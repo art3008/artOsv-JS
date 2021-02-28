@@ -29,8 +29,8 @@ let sum = 0;
 
 while(balance <= 50){
     
-    loggerApple(balance);
     amount += randomInt(-5,10);
     balance += amount;
+    loggerApple(balance);
     loggerTrans(amount);
 }
