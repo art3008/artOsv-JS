@@ -20,9 +20,8 @@ const loggerTrans = amount =>{
     }
 }
 
-
 let balance = 0;
-amount = 100;
+let amount = 0;
 
 balance += amount;
 
@@ -47,4 +46,5 @@ balance += amount;
 
 loggerApple(balance);
 loggerTrans(amount);
+
 
