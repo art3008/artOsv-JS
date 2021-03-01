@@ -1,4 +1,4 @@
-const loggerApple = (balance) =>{
+    const loggerApple = (balance) =>{
 
     console.log("------------")
     console.log("В ящике " + balance + " яблок");
@@ -25,7 +25,6 @@ const randomInt = (min,max) =>
 
 let balance = 0;
 let amount = 0;
-let sum = 0;
 
 while(balance <= 50){
     
@@ -35,3 +34,5 @@ while(balance <= 50){
     loggerApple(balance);
 
 }
+
+
