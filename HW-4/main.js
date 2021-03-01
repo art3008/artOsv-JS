@@ -31,6 +31,7 @@ while(balance <= 50){
     
     amount += randomInt(-5,10);
     balance += amount;
-    loggerApple(balance);
     loggerTrans(amount);
+    loggerApple(balance);
+
 }
