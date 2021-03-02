@@ -25,6 +25,19 @@ const createOnlyPositive = (array) =>{
     return positiveArray;
 }
 
+const createOnlyNegative = (array) =>{
+    let negativeArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+        
+        if(array[i] < 0){
+            negativeArray.push(array[i]);
+        }
+        
+    }
+
+    return negativeArray
+}
 
 const createSumArray = (array) =>{
     let sum = 0;
@@ -47,6 +60,41 @@ const createSumIncome = (array) =>{
     
     return income;
 }
+
+const createSumExpend = (array) =>{
+    let expend = 0;
+    for (let i = 0; i < array.length; i++) {
+        expend += array[i];
+        
+    }
+
+    return expend;
+}
+
+const averageSumIncome = (array) =>{
+
+    let income = 0;
+    let result = 0;
+    for (let i = 0; i < array.length; i++) {
+        result =  Math.floor((income += array[i])/array.length);
+
+    }
+    
+    return result;
+}
+
+const averageSumExpend = (array) => {
+
+    let expend = 0;
+    let result = 0;
+    for (let i = 0; i < array.length; i++) {
+        result =  Math.floor((expend += array[i])/array.length);
+        
+    }
+
+    return result;
+}
+
 
 // const createAverageArray = (array) =>{
 
@@ -88,13 +136,24 @@ const loggerTrans = amount =>{
 let balance = 0;
 let amounts = createRandmArray(-10,20,30);
 let positive = createOnlyPositive(amounts);
+let negative = createOnlyNegative(amounts);
+
 let sumIncome = createSumIncome(positive);
+let sumExpend = createSumExpend(negative);
 
+let avgInc = averageSumIncome(positive);
+let avgExp = averageSumExpend(negative);
 
-console.log(amounts);
-console.log(positive);
+console.log("Массив " +  " " + amounts);
+console.log("Доход " + positive);
+console.log("Расход " + negative);
+
 console.log("Доход равен " + sumIncome);
+console.log("Расход равен " + sumExpend);
+console.log("Среднее значение дохода " + avgInc);
+console.log("Среднее значение расхода " + avgExp);
 
+console.log("*************")
 while(balance <= 100){
     
     let amount = amounts.shift();
