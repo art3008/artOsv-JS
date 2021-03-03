@@ -96,21 +96,6 @@ const averageSumExpend = (array) => {
 }
 
 
-// const createAverageArray = (array) =>{
-
-// }
-
-
-// let sss = createRandmArray(-5,10,20);
-
-// let positive = createOnlyPositive(sss);
-
-// let summa = createSumArray(positive);
-
-// console.log(sss);
-// console.log(positive);
-// console.log(summa);
-
 const loggerApple = (balance) =>{
 
     console.log("------------")
