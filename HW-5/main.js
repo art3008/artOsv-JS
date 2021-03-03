@@ -52,10 +52,10 @@ const createSumArray = (array) =>{
 
 const averageValue = (array) =>{
 
-    let income = 0;
+    let sum = 0;
     let result = 0;
     for (let i = 0; i < array.length; i++) {
-        result =  Math.floor((income += array[i])/array.length);
+        result =  Math.floor((sum += array[i])/array.length);
 
     }
     
