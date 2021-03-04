@@ -12,15 +12,12 @@ const createRandmArray = (min,max,length) =>{
 
 
 const filterPositive = (array) =>{
-    let newArray;
-    newArray = array.filter(arr => arr > 0);
-    return newArray;
+    return array.filter(arr => 0);
+    
 }
 
 const filterNegative = (array) =>{
-    let newArray;
-    newArray = array.filter(arr => arr < 0);
-    return newArray;
+     return array.filter(arr => arr < 0 );
 }
 
 const sumArray = (array) =>{
