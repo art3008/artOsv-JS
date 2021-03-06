@@ -12,7 +12,7 @@ const createRandmArray = (min,max,length) =>{
 
 
 const filterPositive = (array) =>{
-    return array.filter(arr => 0);
+    return array.filter(arr => arr < 0);
     
 }
 
