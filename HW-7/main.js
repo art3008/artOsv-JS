@@ -49,7 +49,7 @@ const loggerTrans = amount =>{
   }
 }
 
-const funcEvery = 
+const funcEvery = (currentValue) => currentValue > 0;
 
 
 let balance = 0;
@@ -66,6 +66,8 @@ let arraySumNegativeTransact = getSum(arrayNegativeTransact);
 let averagePositiveTransact = getAverageValue(arrayPositiveTransact);
 let averageNegativeTransact = getAverageValue(arrayNegativeTransact);
 
+let example = amounts.every(funcEvery);
+
 console.log("Сумма ", arraySumApple, amounts);
 
 console.log("Доход ", arrayPositiveTransact);
@@ -77,6 +79,7 @@ console.log("Сумма расходов", arraySumNegativeTransact);
 console.log("Средние значение дохода", averagePositiveTransact);
 console.log("Среднее значение расхода", averageNegativeTransact);
 
+console.log("Все транзакции были положительными ?", example);
 
 console.log("*************")
 console.log("LOGGER");
@@ -102,6 +105,6 @@ while(balance <= 100){
 // +Вывести сумму расходов (т.е. всех отрицательных транзакций) (reduce)
 // +Посчитать средний доход (т.е. среднее значение всех положительных транзакций)
 // +Посчитать средний расход (т.е. среднее значение всех отрицательных транзакций)
-// Вывести специальное сообщение, если все транзакции были положительные (every)
+// +Вывести специальное сообщение, если все транзакции были положительные (every)
 // Сгенерировать массив строк "Доход" или "Расход", соответсвенно каждой транзакции (map transaction => "Доход" или "Расход")
 // Творческое задание: использовать одну из оставшихся функций
