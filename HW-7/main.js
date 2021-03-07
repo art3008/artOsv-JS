@@ -68,7 +68,23 @@ let averageNegativeTransact = getAverageValue(arrayNegativeTransact);
 
 let example = amounts.every(funcEvery);
 
+let roots = amounts.map(function(num){
+    if(num > 0){
+      return "Доход" + " " + num;
+    }
+    else{
+      return "Расход" + " " + num;
+    }
+
+});
+
+const rev = amounts.reverse();
+
 console.log("Сумма ", arraySumApple, amounts);
+
+console.log("Перевернутый массив ", rev);
+
+console.log("Example: ", roots)
 
 console.log("Доход ", arrayPositiveTransact);
 console.log("Расход ", arrayNegativeTransact);
