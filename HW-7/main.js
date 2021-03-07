@@ -86,7 +86,7 @@ amounts.reverse();
 
 console.log("Перевернутый массив ", amounts);
 
-console.log("Example: ", roots)
+console.log("Массив с использованием map: ", roots)
 
 console.log("Доход ", arrayPositiveTransact);
 console.log("Расход ", arrayNegativeTransact);
