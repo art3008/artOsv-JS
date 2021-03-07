@@ -78,11 +78,13 @@ let roots = amounts.map(function(num){
 
 });
 
-const reverArr = amounts.reverse();
+
 
 console.log("Сумма ", arraySumApple, amounts);
 
-console.log("Перевернутый массив ", reverArr);
+amounts.reverse();
+
+console.log("Перевернутый массив ", amounts);
 
 console.log("Example: ", roots)
 
