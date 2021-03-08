@@ -17,18 +17,19 @@ const nNoun = (form1,form2,form3) =>{
 
         let lastDigit = absN % 10;
         let word;
-        if(lastDigit === 1){
-            word = form1;
-        }
-        
-        else if(2 >= lastDigit && lastDigit <= 4) {
-            word = form2;
-        }
-        
-        else{
+        let secondLastDigit = Math.trunc(absN / 10) % 10;
+        if(secondLastDigit === 1){
             word = form3;
-        }
+        }else{
+            if(lastDigit === 1){
+                word = form1;
+            } else if (2 <= lastDigit && lastDigit <= 4){
+                word = form2;
+            } else {
+                word = form3;
+            }
 
+        }
         return n + " " + word;
     }
     
@@ -40,7 +41,7 @@ const loggerTrans = amount =>{
     if(amount >= 0 ){
         console.log("Вы получили " + apples(amount));
     }else{
-        console.log("Вы потеряли " + Math.abs(apples(amount)));
+        console.log("Вы потеряли " + apples(amount));
     }
 }
 
