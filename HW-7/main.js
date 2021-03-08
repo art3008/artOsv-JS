@@ -23,7 +23,7 @@ const filterNegative = (array) =>{
 }
 
 const getAverageValue = (array) =>{
-    return Math.ceil(getSum(array)/array.length);
+    return getSum(array)/array.length;
 }
 
 
