@@ -38,7 +38,6 @@ const constructorTriangle = (a,b,c) => ({
     },
     square: function() {
         halfPerim = (this.a + this.b + this.c)/2;
-        
         return Math.sqrt(halfPerim * (halfPerim - this.a) * (halfPerim - this.b) * (halfPerim - this.c));
     }
 });
