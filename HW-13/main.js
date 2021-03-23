@@ -1,15 +1,15 @@
 let validForm = {
-    username: "anton",
-    password: "anton!anton",
+    username: "artyom",
+    password: "artyom!artyom",
     age: "20",
     growth: "150",
   };
   
   let invalidForm = {
-    username: "anto",
-    password: "anto",
+    username: "art",
+    password: "art",
     age: "20a",
-    growth: "315.1"
+    growth: "30.1",
   };
   
   // const maxUsernameLength = 5;
@@ -51,17 +51,23 @@ let validForm = {
       isValid = false;
     }
 
-    let growthValue = parseInt(growth);
+    let growthValue = parseFloat(growth);
 
-    if(growth < 0 || growth > 300){
+    if(growth.length == 0){
+      isValid = true;
+      growth = "Ytdd";
+    }
+    else{
+      if(growth < 0 || growth > 300){
         errors["growth"] = "Рост должен быть в промежутке от 0 до 300";
         isValid = false;
-    }
-  
-    if(Number.isInteger(growthValue)){
-        errors["growth"] = "Знаячение роста должно быть целым";
+      }
+     else if(!Number.isInteger(growthValue)){
+        errors["growth"] = "Значение роста должно быть целым";
         isValid = false;
+      }
     }
+    
 
     if (isValid) {
       // отправить форму 
@@ -85,6 +91,7 @@ let validForm = {
   handleSubmit(validForm);
   console.log("-----");
   handleSubmit(invalidForm);
+  
 //   В процедурной версии добавить проверку поле рост
 // необязателньое
 // целое число +
