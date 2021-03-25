@@ -17,9 +17,9 @@ let validForm = {
   
   let invalidForm = {
     username: "anto",
-    password: "anto",
-    age: "20a",
-    height: "500"
+    password: "antondnsn",
+    age: "350",
+    height: "1589"
   };
   
   
@@ -48,25 +48,68 @@ let validForm = {
   
     return state.result.length > 0 ? state : withError(state, "Обязательное поле");
   }
-  
+
+  //////////
+  const nRequired = (state) => {
+    if (state.result.length == 0) {
+      state.isValid = true;
+      return state;
+    } 
+    else {
+        console.log("Не пустая");
+    }
+    return state;
+  }
+  ///////
+
   const length = (minLength) => (state) => {
-    if (!state.isValid) {
+    if(!state.isValid) {
       return state;
     }
-  
     return state.result.length >= minLength ? state : withError(state, "Длина должна быть не меньше " + minLength);
+  } 
+
+  const interval = (min,max) => (state) => {
+      if(!state.isValid){
+        return state;
+    }
+      return state.result > max || state.result < min ? withError(state, "Возраст должнен быть не больше " + max + " и не меньше " + min) : state;
+  };
+
+  const isNumber = (state) => {
+      if(!state.isValid){
+          return state;
+      }
+      let valueHeight = parseInt(state.result);
+      return isNaN(state.result) || state.result !== String(valueHeight) ? withError(state, "Значение должен быть числом") : state;
+  };
+
+  const isInt = (state) => {
+      if(!state.isValid){
+          return state;
+      }
+      let heightValue = parseFloat(state.result);
+      return !Number.isInteger(heightValue) ? withError(state, "Значение должно быть целым числом") : state;
   }
-  
+
+
+  const contains = (symbol) => (state) => {
+      if(!state.isValid){
+          return state;
+      }
+      return state.result.indexOf(symbol) < 0 ? withError(state,"В ведённых данных отсутствует " + symbol) : state;
+  }
+
+ 
   const validate = (...validators) => (initialState) => 
     validators.reduce((state, validator) => validator(state), initialState);
-  
-  
-  let UserFormValidation = {
+
+    let UserFormValidation = {
     username: validate(required, length(5)),
-    password: validate(required, length(8), contains("!")),
-    age: (state) => [true,]
-    // age: validateAge,
-    // height: validateHeight,
+    password: validate(required, length(8),contains("!")),
+    age: validate(required,interval(0,150),isNumber),
+    height: validate(nRequired,interval(0,380),isInt),
+    
   };
   
   const validateFiled = key => value => {
@@ -78,7 +121,7 @@ let validForm = {
       : state
     );
   }
-    // UserFormValidation[key] ? UserFormValidation[key](value) : UserFormValidation["_default"](value);
+  // UserFormValidation[key] ? UserFormValidation[key](value) : UserFormValidation["_default"](value);
   
   // UserForm = { string: string }
   // Errors = { string: string }
@@ -87,6 +130,7 @@ let validForm = {
   // form -> validateFields -> isFormValid -> 
   //                        ----------------> [isValid, errors, createUser]
   // pipe(form, validateFileds, isFormValid, createResult)
+
   const validateUserForm = form => {
   
     const validationStates = 
@@ -132,7 +176,8 @@ let validForm = {
   }
   
   /// 
-  
   handleSubmit(validForm);
   console.log("-----");
   handleSubmit(invalidForm);
+
+  
