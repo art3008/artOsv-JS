@@ -7,4 +7,4 @@ const reverseStringRecursive = string => {
     }
   }
   
-console.log(reverseStringRecursive("Привет"));
+console.log(reverseStringRecursive("Привет".toLowerCase()));
