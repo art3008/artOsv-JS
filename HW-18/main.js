@@ -97,7 +97,6 @@ const log = {
     }
   
     console.log(transactions.map(transaction => transaction >= 0 ? "Доход" : "Расход"));
-  
     console.log("Круглые транзакции", analitics.getAllDivisible(5, transactions));
   },
 }
@@ -175,21 +174,9 @@ box.addEventListener("amountChanged", (amount) => {
     console.log("-----------------------")
 });
 
-box.addBoxListener("boxChanged", (amount) => {
-  let transactions = [];
-  amounts.push(transactions);
-  //console.log(amount);
-  // console.log(analitics.getNegatives(amounts));
-});
-
 box.addEventListener("amountChanged", (_, transaction) => {
   transactions.push(transaction);
-  //console.log();
 });
-
-// let box = new Box(["груша", "груши", "груш"]);
-// console.log(box);
-// log.boxState(box);
 
 let transactions = [];
 //console.log(amounts);
@@ -230,45 +217,66 @@ const e = (tag, attributes = {}, ...children) => {
 
   
 
-  window.addEventListener("DOMContentLoaded", (event) => {
+  window.addEventListener("load", (event) => {
     console.log([document.body]);
 
     const div = e("div", {
       style: {
-        border: "1px solid red"
+        border: "1px solid red",
+        padding:"20px"
       }
+    });
+
+    box.addEventListener("amountChanged", (_, transaction) => {
+      div.append(e("div", {}, "Новая транзакция - ", transaction));
+    });
+
+    box.addEventListener("amountChanged", (_,transaction) => {
+      if(transaction >= 0) {
+        console.log("Получили ", nApples(transaction));
+        div.append(e("div",{},"Получили ", nApples(transaction)))
+      } else {
+        div.append(e("div",{},"Потеряли ", nApples(transaction)))
+      }
+    });
+
+    box.addEventListener("amountChanged", (amount) => {
+      div.append(e("div",{},"Состояние коробки ", amount));
+    });
+
+    box.addEventListener("amountChanged", (amount) => {
+      console.log("В ящике " + nApples(amount));
+      
+        if (amount > 0) {
+          div.append(e("div",{},"Полная коробка"));
+        } else if (amount === 0) {
+          div.append(e("div",{},"Пустая коробка коробка"));
+        } else { // box < 0
+          div.append(e("div",{},"Кредитная коробка"));
+        }
+        div.append(e("div",{},"---------------------"))
+    });
+
+    box.addEventListener("amountChanged", (_, transaction) => {
+      transactions.push(transaction);
     });
   
     document.body.append(div);
   
-    // let index = 0;
-    // a.addEventListener("click", (event) => {
-    //   event.preventDefault();
-    //   console.log(event);
-  
-    //   a.classList.toggle("link_red");
-    //   a.classList.toggle("link_green");
-  
-    //   ul.append(e("li", {}, "Пункт " + ++index));
-    // });
+    // div.append(e("div", {}, "Положительные транзакции ", analitics.getPositives(amounts)));
+    // div.append(e("div", {}, "Отрицательные транзакции ", analitics.getNegatives(amounts)));
+    
     while (box.amount < goal && amounts.length > 0) {
   
         let amount = amounts.shift();
-        //box.changeAmount(amount);
-        div.append(e("div", {}, "Пункт ", amount));
-        //transactions.push(amount)
+        box.changeAmount(amount);
+        //div.append(e("div", {}, "Пункт ", analitics.getPositives(transactions)));
+
       }
-      //console.log(amounts);
-      //console.log(transactions);
-      //box.boxConsist(amounts);
-      //log.result(box, goal);
+      //div.append(e("div", {}, "Пункт ", log.statistics(transactions)));
+
       log.statistics(transactions);
 
     
 });
-    
-    // Скорость страдает
-    // Неудобно
-    // Невозсожно нормально добавить обработчики событий
-    // document.body.innerHTML = "<a href='sdf'>asdfsadf</a>";
   
