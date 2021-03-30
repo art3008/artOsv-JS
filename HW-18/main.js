@@ -233,7 +233,7 @@ const e = (tag, attributes = {}, ...children) => {
     }
 
     box.addEventListener("amountChanged", (_, transaction) => {
-      div.append(e("div", {}, "Новая транзакция - ", transaction));
+      div.append(e("div", {}, "Новая транзакция: ", transaction));
     });
 
     box.addEventListener("amountChanged", (_,transaction) => {
