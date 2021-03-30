@@ -224,10 +224,11 @@ const e = (tag, attributes = {}, ...children) => {
         if (analitics.areAllPositive(transactions)) {
           div.append(e("div",{},"Все транзакции были положительными!"));
         }
-        const a = transactions.map(transaction => transaction >= 0 ? "Доход\n" : "Расход\n");
+        const a = transactions.map(transaction => transaction >= 0 ? "\nДоход\n" : "Расход\n");
+        div.append(e("div",{},"^^^^^^^^^^^^^^"));
         div.append(e("div",{},a));
-        //console.log(transactions.map(transaction => transaction >= 0 ? "Доход" : "Расход"));
-        console.log("Круглые транзакции", analitics.getAllDivisible(5, transactions));
+        div.append(e("div",{},"^^^^^^^^^^^^^^"));
+        
         div.append(e("div",{},"Круглые транзакции ", analitics.getAllDivisible(5,transactions)));
       },
     }
@@ -263,6 +264,7 @@ const e = (tag, attributes = {}, ...children) => {
     });
 
     box.addEventListener("amountChanged", (_, transaction) => {
+      
       transactions.push(transaction);
     });
 
