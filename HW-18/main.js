@@ -209,6 +209,28 @@ const e = (tag, attributes = {}, ...children) => {
         padding:"20px"
       }
     });
+    
+    const logger = {
+      statistics: transactions => {
+        let gains = analitics.getPositives(transactions);
+        let loses = analitics.getNegatives(transactions);
+      
+        div.append(e("div",{},"Суммарный доход: ",analitics.getSum(gains)));
+        div.append(e("div",{},"Суммарный расход: ",analitics.getSum(loses)));
+        
+        div.append(e("div",{},"Средний доход: ",analitics.getAverage(gains)));
+        div.append(e("div",{},"Средний расход: ",analitics.getAverage(loses)));       
+            
+        if (analitics.areAllPositive(transactions)) {
+          div.append(e("div",{},"Все транзакции были положительными!"));
+        }
+        const a = transactions.map(transaction => transaction >= 0 ? "Доход\n" : "Расход\n");
+        div.append(e("div",{},a));
+        //console.log(transactions.map(transaction => transaction >= 0 ? "Доход" : "Расход"));
+        console.log("Круглые транзакции", analitics.getAllDivisible(5, transactions));
+        div.append(e("div",{},"Круглые транзакции ", analitics.getAllDivisible(5,transactions)));
+      },
+    }
 
     box.addEventListener("amountChanged", (_, transaction) => {
       div.append(e("div", {}, "Новая транзакция - ", transaction));
@@ -242,8 +264,9 @@ const e = (tag, attributes = {}, ...children) => {
 
     box.addEventListener("amountChanged", (_, transaction) => {
       transactions.push(transaction);
-      div.append(e("div",{},log.statistics(transaction)));
     });
+
+
   
     document.body.append(div);
   
@@ -254,7 +277,9 @@ const e = (tag, attributes = {}, ...children) => {
         box.changeAmount(amount);
     }
     log.statistics(transactions);
+    logger.statistics(transactions);
 
-    
-});
+  
+
+  });
   
