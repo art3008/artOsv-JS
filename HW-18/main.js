@@ -179,20 +179,6 @@ box.addEventListener("amountChanged", (_, transaction) => {
 });
 
 let transactions = [];
-//console.log(amounts);
-// while (box.amount < goal && amounts.length > 0) {
-  
-//   let amount = amounts.shift();
-//   box.changeAmount(amount);
-//   //transactions.push(amount)
-// }
-// //console.log(amounts);
-// //console.log(transactions);
-// //box.boxConsist(amounts);
-// //log.result(box, goal);
-// log.statistics(transactions);
-
-
 const e = (tag, attributes = {}, ...children) => {
     const element = document.createElement(tag);
   
@@ -213,9 +199,6 @@ const e = (tag, attributes = {}, ...children) => {
     return element;
   }
 
-
-
-  
 
   window.addEventListener("load", (event) => {
     console.log([document.body]);
@@ -259,23 +242,18 @@ const e = (tag, attributes = {}, ...children) => {
 
     box.addEventListener("amountChanged", (_, transaction) => {
       transactions.push(transaction);
+      div.append(e("div",{},log.statistics(transaction)));
     });
   
     document.body.append(div);
   
-    // div.append(e("div", {}, "Положительные транзакции ", analitics.getPositives(amounts)));
-    // div.append(e("div", {}, "Отрицательные транзакции ", analitics.getNegatives(amounts)));
     
     while (box.amount < goal && amounts.length > 0) {
   
         let amount = amounts.shift();
         box.changeAmount(amount);
-        //div.append(e("div", {}, "Пункт ", analitics.getPositives(transactions)));
-
-      }
-      //div.append(e("div", {}, "Пункт ", log.statistics(transactions)));
-
-      log.statistics(transactions);
+    }
+    log.statistics(transactions);
 
     
 });
