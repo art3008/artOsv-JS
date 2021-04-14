@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="style.css"></link>
+
+  <script src="../lib/lists.js"></script>
+  <script src="../lib/dom.js"></script>
+
+  <script src="ui.js"></script>
+  <script src="game.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+
+
+  <div class="game">
+    <div class="game-state-placeholder"></div>
+    <div class="game__container" id="game"></div>
+    
+  </div>
+
+  <div class="home" id = "home">
+    <div class="game-state-placeholder"></div>
+      <h2>Счет</h2>
+
+      <div class="home__scores scores">
+    </div>
+    
+    <div class="home__settings settings" id = "hm__set">
+      <h2>Настройки</h2>
+
+        <label>
+          <input type="number" id = "value_N">Введите длину
+        </label>
+        
+        <label>
+          <input type="number" id = "value_M">Введите ширину
+        </label>
+        
+        <select size="3" id = "select-color">
+          <option disabled>Выбеите цвет</option>
+          <option>Красный</option>
+          <option>Синий</option>
+          <option>Жёлтый</option>
+          <option>Зелёный</option>
+        </select>
+      <div class="button-start" id="button-start">Начать игру</div>
+
+    </div>
+  </div>
+
+  <div class="game-state game-state_hidden" id="game-state">
+    <div class="game-timer" id="game-timer"></div>
+  </div>
+
+  <div class="button-pause button-pause_hidden" id="button-pause"></div>
+
+</body>
+</html>
