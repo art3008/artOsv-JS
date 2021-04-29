@@ -19,10 +19,9 @@ const createUi = () => {
 
   const gameState = document.getElementById("game-state");
   const buttonPause = document.getElementById("button-pause");
-  
-  // const cc = document.getElementsByClassName("card__back");
-  
+
   buttonStart.addEventListener("click", () => {
+    
     buttonStart.classList.add("button-start_hidden");
     home.classList.add("home_hidden");
 
@@ -36,20 +35,15 @@ const createUi = () => {
       buttonStart.classList.remove("button-start_hidden");
 
       buttonPause.removeEventListener("click", togglePause);
-
-      
-
       console.log("Game over", time);
     });
 
     const togglePause = () => {
       const isRunning = game.togglePause();
-      // const isRunning = game.togglePause();
-
       console.log(isRunning);
-      
+
       if (isRunning) {
-        home.classList.add("home_hidden"); 
+        home.classList.add("home_hidden",); 
             
       } else {
         home.classList.remove("home_hidden");
@@ -58,7 +52,6 @@ const createUi = () => {
     };
 
     buttonPause.addEventListener("click", togglePause);
-
     game.start();
   
 
