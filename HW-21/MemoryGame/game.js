@@ -36,8 +36,13 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   let endTime = 0;
   let valueRes = 0;
   let isRunning = false;
-  let img = new Image();
-  img.src = 'https://im0-tub-kz.yandex.net/i?id=77e3ce95f7937bbb4e1327d760a38033&n=13';
+  
+
+  const images = [
+    "../"
+  ]
+
+
 
   const createCard = (index, value) => {
     const div = $("div", { 
@@ -47,7 +52,8 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
       },
       onclick:  handleClick, // addEventListener("click", () => ...)
     }, 
-      $("div", { className: "card__face card__front"}, value ),
+      $("div", { className: "card__face card__front"},
+        $("img", {src:images[value]})),
       $("div", { className: "card__face card__back"}),
     );
 
@@ -55,7 +61,6 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   }
 
   
-
   let pair = []; // 0-2 элементов
  
   const openCard = (cardDiv) => {

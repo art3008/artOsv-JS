@@ -19,9 +19,7 @@ const createUi = () => {
 
   const gameState = document.getElementById("game-state");
   const buttonPause = document.getElementById("button-pause");
-  
-  // const cc = document.getElementsByClassName("card__back");
-  
+
   buttonStart.addEventListener("click", () => {
     buttonStart.classList.add("button-start_hidden");
     home.classList.add("home_hidden");
@@ -47,7 +45,7 @@ const createUi = () => {
       // const isRunning = game.togglePause();
 
       console.log(isRunning);
-      
+
       if (isRunning) {
         home.classList.add("home_hidden"); 
             

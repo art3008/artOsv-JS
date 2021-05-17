@@ -132,7 +132,9 @@
     transition: transform .5s, opacity .5s ;
   }
   
-  .card__front, .redCard, .blueCard {
+  .card__front {
+    background-color: aqua;
+    /* background-image: url('https://im0-tub-kz.yandex.net/i?id=77e3ce95f7937bbb4e1327d760a38033&n=13'); */
     font-size: 30px;
     display: flex;
     align-items: center;
@@ -153,14 +155,6 @@
     transform: rotateX(180deg);
   }
 
-  .redCard{
+  .col{
     background-color: red;
-    color: white;
-    border-radius: 10px;
   }
-
-  .blueCard {
-    background-color: blue;
-    
-  }
-

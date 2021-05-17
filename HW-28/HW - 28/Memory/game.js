@@ -29,6 +29,11 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   const state =  generateState(valueN, valueM);;
   const timers = generateTimersList(valueN, valueM);
   
+  const images = [
+    "/home/artem/Рабочий стол/STEP/artOsv/artOsv-JS/HW-22/images/1013682517.jpg",
+
+  ];
+
   let gameTimer = null;
   let startTime = 0;
   let pauseTime = 0;
@@ -44,7 +49,13 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
       },
       onclick:  handleClick, // addEventListener("click", () => ...)
     }, 
-      $("div", { className: "card__face card__front"}, value ),
+      $("div", { className: "card__face card__front"}, 
+      $("img", { src: images[value],
+      style:{
+        width:"150px",
+        height: "200px"
+      }})
+      ),
       $("div", { className: "card__face card__back"}),
     );
 
@@ -61,19 +72,12 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
     
   }
 
-
-
   const closeCard = (cardDiv) => {
     cardDiv.classList.add("card_closed");
     cardDiv.classList.remove("card_open");
     // pair.splice(pair.indexOf(cardDiv), 1);
   }
-
-  if(colorValue == 'Красный'){
-    //cardDiv.style.backgroundColor = "red";
-    console.log("Выбран цвет - ",colorValue);
-    
-  }
+ 
 
   const extractCardIndex = (cardDiv) => parseInt(cardDiv.dataset.index);
 
@@ -110,11 +114,7 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
       valueRes++;
       console.log(value1, value2, value1 === value2);
       // console.log(valueRes);
-      if(colorValue === "Красный"){
-        buttonPause.classList.add("col");
-      } else {
-        //buttonPause.classList.remove("col");
-      }
+      
       if (value1 === value2) {
         indexes.forEach(index => state[index] = true);
         

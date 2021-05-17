@@ -28,8 +28,7 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   const values = generateValues(valueN, valueM);
   const state =  generateState(valueN, valueM);;
   const timers = generateTimersList(valueN, valueM);
-  const cc = document.getElementsByClassName("card__back");
-
+  
   let gameTimer = null;
   let startTime = 0;
   let pauseTime = 0;
@@ -59,11 +58,11 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   let pair = []; // 0-2 элементов
  
   const openCard = (cardDiv) => {
-
     cardDiv.classList.add("card_open");
     cardDiv.classList.remove("card_closed");
     pair.push(cardDiv);
-      
+    
+    
   }
 
   const closeCard = (cardDiv) => {
@@ -71,8 +70,6 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
     cardDiv.classList.remove("card_open");
     // pair.splice(pair.indexOf(cardDiv), 1);
   }
-
-  
 
   const extractCardIndex = (cardDiv) => parseInt(cardDiv.dataset.index);
 
@@ -96,29 +93,25 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
       return;
     }
 
-    const changeColor = (cardDiv) => {
-      if(colorValue == "Красный") {
-        cardDiv.classList.toggle("redCard");
-      } else if (colorValue == "Синий") {
-        cardDiv.classList.toggle("blueCard");
-      }
-    }
     const isOpen = pair.includes(cardDiv); // cardDiv.classList.contains("card_open"); 
     
     if (!isOpen) {
-      openCard(cardDiv);
-      changeColor(cardDiv);
+      openCard(cardDiv)
+      
     }
 
     if (pair.length === 2) {
       const indexes = pair.map(extractCardIndex);
-      
       const [value1, value2] = indexes.map(index => values[index]);
       valueRes++;
       console.log(value1, value2, value1 === value2);
-
+      // console.log(valueRes);
+      if(colorValue === "Красный"){
+        buttonPause.classList.add("col");
+      } else {
+        console.log("NENEN");
+      }
       if (value1 === value2) {
-        // pair.classList.add("blueCard");
         indexes.forEach(index => state[index] = true);
         if (state.every(flag => flag)) {
           endTime = Date.now();
