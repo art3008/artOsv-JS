@@ -1,10 +1,3 @@
-// Генерируем массив Длиной N * N, в котором по две копии всех чисел от 0 до N * N / 2
-// 0, 1, 2, 3, 4, 5, 6, 7
-// 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5 
-// 0, 0, 1, 1, 2, 2, 3, 3 ..
-
-// Отсортировать его случайно.
-
 const generateValues = (n, m) =>
   createArray(index => [Math.floor(index / 2), Math.random()]) (n * m)
   .sort((a, b) => a[1] - b[1])
@@ -32,7 +25,7 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   const images = [
     "G:/ШАГ - JavaScript/HW-JS/artOsv-JS/artOsv-JS/HW-22/images/1013682517.jpg",
     "G:/ШАГ - JavaScript/HW-JS/artOsv-JS/artOsv-JS/HW-22/images/deck-000181-herz7.jpg",
-    "G:/ШАГ - JavaScript/HW-JS/artOsv-JS/artOsv-JS/HW-22/images/1013682517.jpg",
+    "G:/ШАГ - JavaScript/HW-JS/artOsv-JS/artOsv-JS/HW-22/images/kisspng-king-of-clubs-playing-card-king-of-spades-clip-art-king-of-spades-5b0ccc1c687f55.188174121527565340428.jpg",
 
   ];
 
@@ -217,8 +210,3 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   };
 };
 
-// () => {
-//   isRunning = true;
-//   startTime = Date.now(); // количество миллисекунд прошедших с 1 января 1970  Эпоха Unix
-//   gameTimer = setInterval(updateGameTimer, 1000);
-// }

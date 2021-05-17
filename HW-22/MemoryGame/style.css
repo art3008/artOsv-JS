@@ -65,7 +65,7 @@
     right: 0;
     top: 0;
     height: 100px;
-    background-color: chartreuse;
+    background-color: darkblue;
   }
   
   .game-state_hidden {
@@ -108,8 +108,6 @@
   
   .grid {
     display: grid;
-    /* grid-template-columns: ; */
-    /* grid-template-rows: ; */
     column-gap: 20px;
     row-gap: 20px;
   
@@ -153,16 +151,9 @@
     transform: rotateX(180deg);
   }
 
-  .card__front, .col{
-    background-color: red;
-  }
 
-  .examp{
-    background-color: red;
-    width: 100px;
-    height: 100px;
-  }
-
-  .theme_pink .card__front{
-    background-color: blue;
+  .theme_pink {
+    border-radius: 10px;
+    background-color: darkgray;
+    
   }
