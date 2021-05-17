@@ -29,14 +29,16 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   const state =  generateState(valueN, valueM);;
   const timers = generateTimersList(valueN, valueM);
   
+  const images = [
+    "/home/artem/Рабочий стол/STEP/artOsv/artOsv-JS/HW-22/images/deck-000181-herz7.jpg",
+  ];
+
   let gameTimer = null;
   let startTime = 0;
   let pauseTime = 0;
   let endTime = 0;
   let valueRes = 0;
   let isRunning = false;
-  let img = new Image();
-  img.src = 'https://im0-tub-kz.yandex.net/i?id=77e3ce95f7937bbb4e1327d760a38033&n=13';
 
   const createCard = (index, value) => {
     const div = $("div", { 
@@ -46,15 +48,19 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
       },
       onclick:  handleClick, // addEventListener("click", () => ...)
     }, 
-      $("div", { className: "card__face card__front"}, value ),
+      $("div", { className: "card__face card__front"}, 
+      $("img", { src: images[value],
+      style:{
+        width:"150px",
+        height: "200px"
+      }})
+      ),
       $("div", { className: "card__face card__back"}),
     );
 
     return div;
   }
-
-  
-
+ 
   let pair = []; // 0-2 элементов
  
   const openCard = (cardDiv) => {
@@ -69,6 +75,12 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
     cardDiv.classList.add("card_closed");
     cardDiv.classList.remove("card_open");
     // pair.splice(pair.indexOf(cardDiv), 1);
+  }
+
+  if(colorValue == 'Красный'){
+    //cardDiv.style.backgroundColor = "red";
+    console.log("Выбран цвет - ",colorValue);
+    
   }
 
   const extractCardIndex = (cardDiv) => parseInt(cardDiv.dataset.index);
@@ -109,10 +121,11 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
       if(colorValue === "Красный"){
         buttonPause.classList.add("col");
       } else {
-        console.log("NENEN");
+        //buttonPause.classList.remove("col");
       }
       if (value1 === value2) {
         indexes.forEach(index => state[index] = true);
+        
         if (state.every(flag => flag)) {
           endTime = Date.now();
           clearInterval(gameTimer);
@@ -126,7 +139,7 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
           // gridDiv.parentElement.removeChild(gridDiv); // removeChild - удалем у родителя переданный элемент
           isRunning = false;
           gameOverCallback(endTime - startTime);
-          console.log("Результат игры - ",valueRes);
+          console.log("Результат игры - ",valueRes);         
         }
         pair = [];
 
@@ -161,6 +174,8 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
   );
   gameDiv.append(gridDiv);
   
+  
+  
   const togglePause = () => {
     if (isRunning) {
       pauseTime = Date.now();
@@ -172,7 +187,6 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
       isRunning = true;
     }
   };
-    
 
   timerDiv.innerText = "00:00";
   const updateGameTimer = () => {
@@ -190,11 +204,12 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
 
 
   return {
-    start: () => {
-      isRunning = true;
-      startTime = Date.now(); // количество миллисекунд прошедших с 1 января 1970  Эпоха Unix
-      gameTimer = setInterval(updateGameTimer, 1000);
-    },
+    start: () => new Promise(() => {
+        isRunning = true;
+        startTime = Date.now(); // количество миллисекунд прошедших с 1 января 1970  Эпоха Unix
+        gameTimer = setInterval(updateGameTimer, 1000);
+    })
+    ,
 
     togglePause: () => {
       togglePause();
@@ -204,3 +219,9 @@ const createGame = (gameDiv, timerDiv, gameOverCallback) => {
     }
   };
 };
+
+// () => {
+//   isRunning = true;
+//   startTime = Date.now(); // количество миллисекунд прошедших с 1 января 1970  Эпоха Unix
+//   gameTimer = setInterval(updateGameTimer, 1000);
+// }
