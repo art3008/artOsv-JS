@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
     window.addEventListener("input", () => {
     
         const regexResult = input.value.match(re); 
-        //div.innerHTML = input.value.match(re);
+        
         let valueA = parseInt(regexResult[1]);
         let valueExpression = regexResult[2];
         let valueB = parseInt(regexResult[3]);
