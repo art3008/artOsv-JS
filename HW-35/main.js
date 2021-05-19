@@ -1,26 +1,47 @@
 window.addEventListener("load", () => {
 
-const form = $("form",{
-    name: "myForm"
-},
-    $("input",{type:"text",name:"field-1"}),
-    $("div",{name:"field-1"}),
-
-)
-
-document.body.append(form);
-
-console.log([form])
-
-const text = form.elements["field-1"];
-
-text.addEventListener("change", (event) => {
-    //console.log(event);
-    let a = text.value.split("+");
+    const re = /^(\d+)([-+*/^])(\d+)$/;
     
-    console.log(parseInt(a[0]) + parseInt(a[1]));
-
-
-  });
-
-});
+    const input = $("input",{type:"text"})
+    const div = $("div",{},"");
+    
+    document.body.append(input,div);
+    
+    
+    
+    window.addEventListener("input", () => {
+    
+        const regexResult = input.value.match(re); 
+        //div.innerHTML = input.value.match(re);
+        let valueA = parseInt(regexResult[1]);
+        let valueExpression = regexResult[2];
+        let valueB = parseInt(regexResult[3]);
+    
+        console.log(valueExpression)
+        switch(valueExpression){
+          case "+":
+            div.innerHTML = valueA + valueB;   
+          break;
+          case "*":
+            div.innerHTML = valueA * valueB;
+          break;
+          case "-":
+            div.innerHTML = valueA - valueB;      
+          break;
+          case "/":
+            div.innerHTML = valueA / valueB;      
+          break;
+          case "^":
+              div.innerHTML = Math.pow(valueA,valueB);
+          break;
+          case "sqrt":
+              div.innerHTML = Math.sqrt(valueB);
+          break;  
+          default:
+            div.innerHTML = "ОШИБКА!";
+          break;
+          }
+         
+      });
+    
+    });
