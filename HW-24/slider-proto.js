@@ -82,7 +82,7 @@ window.addEventListener("load", () => {
   slides = createArray(createSlide) (10);
 
   block = $("div", {
-    className: "block",я
+    className: "block",
     // style: {
     //   transform: "translateX(-50px)",
     // }
@@ -99,7 +99,7 @@ window.addEventListener("load", () => {
     onclick: () => {
       moveSlide(-1);
       upadatePostion();
-    }
+    }    
   });
   
   const buttonRight = $("div", {

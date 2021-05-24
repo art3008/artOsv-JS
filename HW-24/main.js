@@ -12,7 +12,7 @@
 // ~ Аватоплей
 
 window.addEventListener("load", () => {
-  const slider = Slider.fromData([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], createSlide);
+  const slider = Slider.fromData([1,2,3], createSlide);
   
   // const slider2 = Slider.fromData([9, 8, 7, 6, 5 , 4, 3, 2, 1], createSlide);
 
@@ -210,17 +210,21 @@ window.addEventListener("load", () => {
 
 
 const images = [
-  "images/img1.jpg"
+  "/home/artem/Рабочий стол/STEP/artOsv-JS/HW-24/images/kisspng-king-of-clubs-playing-card-king-of-spades-clip-art-king-of-spades-5b0ccc1c687f55.188174121527565340428.jpg"
 ];
 
-const createSlide = (index) => {
+const createSlide = (value) => {
   return $("div", { 
       className: "slide__content", 
       style: {
-        width: 200 + "px",
-        height: 200 + "px",
+        width: 300 + "px",
+        height: 300 + "px",
       }
     }, 
-    index
+    $("img", {src:images[value],
+    style:{
+      width:"300px",
+      height: "300px"
+    }})
   );
 }

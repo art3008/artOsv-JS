@@ -18,14 +18,16 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content:space-between ;
+  /* margin-top: 30px; */
+  
 }
 
 .button {
   width: 40px;
   height: 40px;
-  margin: 20px;
-  background-color: aquamarine;
+  margin: 80px;
+  background-color: red;
 }
 
 .slider {
@@ -36,13 +38,17 @@ body {
 
 .slider__container {
   /* width: 100%; */
-  margin: 0 200px;
+   margin: 0 70px; 
 
   /* height: 200px; */
   position: relative;
-  padding: 20px;
-  background-color: lemonchiffon;
+  padding: 95px;
+  /* background-color: lemonchiffon; */
   overflow: hidden;
+  /* justify-content: center; */
+  /* align-items: center; */
+  
+
 }
 
 .slider__film {
@@ -59,13 +65,14 @@ body {
 
 .slider__slide {
   padding: 20px;
-
+  
 }
 
 .slide__content {
   background-color: cadetblue;
   width: 100%;
   height: 100%;
+
 }
 
 .slide_active .slide__content{
