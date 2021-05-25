@@ -23,12 +23,6 @@ class Slider {
   _playDirection = 0;
   _playSpeed = 0;
   
-  // const dx = 200; // шаг, на котоырй мы смещаем элемент
-  // let x = 0; // реальная позицию элемента
-  
-  // let containerWidth = 0;
-  
-  // container -> film (a.k.a block) -> slides[]
   constructor(container, film, slides, options) {
     this._container = container;
     this._film = film;
@@ -77,8 +71,7 @@ class Slider {
         top: 0,
         display: 'flex',
         flexDirection: 'row',
-        // align-items: center;
-        // justify-content: center;
+        
       }
     }, ...slides);
 
@@ -91,9 +84,6 @@ class Slider {
     return new Slider(container, film, slides, options);
   }
 
-  // fromHtml(element) {
-
-  // }
 
   appendTo(element) {
     element.append(this._container);
@@ -108,15 +98,6 @@ class Slider {
     this._upadatePostion();
   }
 
-  // addSlides(data) {
-
-  // }
-
-  // 0 1 2 3 
-  // 0 1 2 3 4 5 6 7 8 9 10
-  // 0 1 2 3 0 1 2 3 0 1 2 ...
-  // В модульной арифметике: a mod b = c [0, b)
-  // В джс: -a mod b = c (-b, -0]
 
   moveSlide(direction) {
     this._slides[this._currentIndex].classList.remove("slide_active");
@@ -161,26 +142,12 @@ class Slider {
   }
 
 
-  // play(direction = 1, dt = 1000) {
-  //   this._playDirection = direction;
-
-  //   if (this._playTimer === null) {
-  //     this._playTimer = setInterval(() => {
-  //       console.log(this._playDirection)
-
-  //       this.moveSlide(this._playDirection);
-  //     }, dt);
-
-  //     this.moveSlide(this._playDirection);
-  //   }
-  // }
 
 
 
   play(direction = 1, dt = 1000) {
     this._playDirection = direction;
     this._playSpeed = dt;
-    // this._playState = true;
 
     if (this._playTimer === null) {
       const doStep = () => {
@@ -190,15 +157,8 @@ class Slider {
         this._playTimer = setTimeout(doStep, this._playSpeed);
       }
 
-      // this._playTimer = setTimeout(() => {
-      //   console.log(direction)
-      //   this.moveSlide(direction);
-
-      //   this._playTimer = 
-      // }, dt);
 
       doStep();
-      // this.moveSlide(this._playDirection);
     }
   }
 
@@ -206,7 +166,8 @@ class Slider {
     if (this._playTimer !== null) {
       clearInterval(this._playTimer);
     }
-    // this._playState = false;
+
+    
     this._playDirection = 0;
     this._playTimer = null;
   }

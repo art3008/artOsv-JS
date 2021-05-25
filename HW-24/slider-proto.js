@@ -1,6 +1,4 @@
-// margin, padding
-// position
-// transform: translate
+
 
 
 let containerWidth = 0;
@@ -9,8 +7,7 @@ let paddingRight = 0;
 let container = null;
 
 let block = null;
-// const dx = 200; // шаг, на котоырй мы смещаем элемент
-// let x = 0; // реальная позицию элемента
+
 
 let currentSlide = 0;
 let slides = [];
@@ -34,21 +31,12 @@ const moveSlide = (direction) => {
 
 const upadatePostion = () => {
 
-  // container.getBoundingClientRect() // Получаем объект с размерами paddingBox
-  // clientWidth | clientHeight - размер contentBox + padding
-  // offsetWidth | offsetHeight - размер contentBox + padding + scrollBars + borderWidth
-
-  // container.getBoundingClientRect() -  Получаем объект с координатами относитльно левого верхнего угла viewPort
-  // offsetTop | offsetLeft - координаты относительно paddingBox радоительского узла
-
-  // const prevContainerWidth = containerWidth;
+  
 
   updateContainerWidth();
 
-  // const halfBlockWidth = block.offsetWidth / 2;
 
   const min = container.clientWidth - block.offsetWidth - paddingRight;
-  // const max = containerWidth - block.offsetWidth;
 
   let x = -slides[currentSlide].offsetLeft + paddingLeft;
 
@@ -56,7 +44,6 @@ const upadatePostion = () => {
 
   x = Math.max(min, Math.min(paddingLeft, x));
 
-  // x *= containerWidth / prevContainerWidth;
 
   console.log(x);
   
@@ -72,7 +59,8 @@ const createSlide = (index) => {
         height: randomInt(100, 250) + "px",
       }
     }, 
-    $("div", { className: "slide__content" }, index)
+    $("div", { className: "slide__content" }, index),
+    
   );
 }
 
@@ -83,9 +71,6 @@ window.addEventListener("load", () => {
 
   block = $("div", {
     className: "block",
-    // style: {
-    //   transform: "translateX(-50px)",
-    // }
   }, ...slides);
 
   container = $("div", {
