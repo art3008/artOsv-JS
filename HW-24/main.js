@@ -228,3 +228,4 @@ const createSlide = (value) => {
     }})
   );
 }
+console.log(images);
