@@ -84,8 +84,6 @@ const startDrag = (item) => (event) => {
 
   container.insertBefore(currentPlaceholder, currentItem);
   
-  // console.log(item, event);
-
   
   let x = event.pageX + innerX;
   let y = event.pageY + innerY;
@@ -105,39 +103,33 @@ const drag = (event) => {
   let x = event.pageX + innerX ;
   let y = event.pageY + innerY;
 
-  // const { top: containerTop, left: containerLeft } = currentItem.getBoundingClientRect();
-  // const { top: itemTop, left: itemLeft } = currentItem.getBoundingClientRect();
-
   
-  // console.log(itemTop, itemLeft);
-
-  // console.log(container.offsetTop, currentItem.offsetTop);
   if (container.offsetLeft >= currentItem.offsetLeft) {
     
     console.log(container.offsetLeft, currentItem.offsetLeft);
-
-    // x = containerLeft;
   }
 
-  // console.log(container.offsetTop, currentItem.offsetTop);
 
   if (container.offsetTop >= currentItem.offsetTop) {
     
     console.log(container.offsetTop, currentItem.offsetTop);
-    // console.log(container.offsetTop, currentItem.offsetTop);
-    // y = containerTop;
   }
 
 
   console.log(x, y);
 
-  const maxY = container.clientHeight - currentItem.offsetHeight;
-  const maxX = container.clientWidth - currentItem.offsetWidth;
+  const maxX = container.clientWidth - currentItem.offsetWidth + 40;
   
-  console.log(maxX);
   
-  y = Math.max(0, Math.min(maxY,y));
-  x = Math.max(0, Math.min(maxX,x));
+  const maxY = container.clientHeight - currentItem.offsetHeight + 40;
+  
+    
+  
+  x = Math.max(0, Math.min(maxX,x - 40)) + 40;
+  
+  
+  y = Math.max(0, Math.min(maxY,y - 40)) + 40;
+
 
   console.log(container.clientWidth - currentItem.offsetWidth)
   
@@ -162,8 +154,6 @@ const dragOver = (event) => {
     container.insertBefore(currentPlaceholder, item.nextSibling);
     placeholderIndex = item.dataset.index + 1;
   }
-
-  // console.log(item, currentPlaceholder);
 
 }
 
