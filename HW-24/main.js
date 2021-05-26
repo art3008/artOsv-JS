@@ -114,10 +114,22 @@ window.addEventListener("load", () => {
 
 
 const images = [
-  "/home/artem/Рабочий стол/STEP/artOsv-JS/HW-24/images/kisspng-king-of-clubs-playing-card-king-of-spades-clip-art-king-of-spades-5b0ccc1c687f55.188174121527565340428.jpg"
+  "images/6df0d8cf67090d8832123ddd6ab9f613.jpg",
+  "images/23cfc3939104338c0a77447753a47343--rose-bulls-nba-players.jpg",
+  "images/1575022925_4.jpg",
+  "images/derrick-rose-pic-getty-images-835672364-1424851209-2338352.jpg",
+  "images/basketball-computer-wallpaper-preview.jpg",
+  "images/6df0d8cf67090d8832123ddd6ab9f613.jpg",
+  "images/6df0d8cf67090d8832123ddd6ab9f613.jpg",
+  "images/6df0d8cf67090d8832123ddd6ab9f613.jpg",
+  "images/6df0d8cf67090d8832123ddd6ab9f613.jpg",
+  "images/6df0d8cf67090d8832123ddd6ab9f613.jpg",
+  "images/6df0d8cf67090d8832123ddd6ab9f613.jpg",
+  
 ];
 
 const createSlide = (value) => {
+  console.log(value);
   return $("div", { 
       className: "slide__content", 
       style: {
@@ -127,8 +139,8 @@ const createSlide = (value) => {
     }, 
     $("img", {src:images[value],
     style:{
-      width:"50px",
-      height: "50px"
+      width:"300px",
+      height: "300px"
     }})
   );
 }
