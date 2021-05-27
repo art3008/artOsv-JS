@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.container {
+  position: relative;
+  margin: 30px;;
+  height: 450px;
+  width: 600px;
+
+  /* background-color: aquamarine; */
+  border: 2px solid black;
+}
+
+.block {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transform: translate(0, 0);
+  transition: transform 0.2s;
+
+  width: 70px;
+  height: 70px;
+  background-color: blueviolet;
+}

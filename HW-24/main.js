@@ -62,10 +62,13 @@ window.addEventListener("load", () => {
         }
 
         event.preventDefault();
+        console.log("Нажали");
       } break;
       
       case "Space": {
         isSpacePressed = false;
+        console.log("Нажали");
+
         event.preventDefault();
       } break;
 
@@ -133,14 +136,14 @@ const createSlide = (value) => {
   return $("div", { 
       className: "slide__content", 
       style: {
-        width: 300 + "px",
-        height: 300 + "px",
+        width: 700 + "px",
+        height: 700 + "px",
       }
     }, 
     $("img", {src:images[value],
     style:{
-      width:"300px",
-      height: "300px"
+      width:"700px",
+      height: "700px"
     }})
   );
 }
