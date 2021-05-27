@@ -3,6 +3,11 @@ class Pterodactyl {
   position;
   v;
 
+
+  sprite;
+  spriteIsReady = false;
+  spriteW;
+  spriteH;
   
   
   constructor({ w, h, x, y, vx}) {
@@ -10,6 +15,23 @@ class Pterodactyl {
     this.shape = rect(this.position, vector(w, h));
     this.v = vector(-vx, 0);
     console.log(vx);
+
+
+    this.sprite = new Image();
+    this.sprite.src = "./dinozavr.png";
+    this.sprite.onload = (event) => {
+      console.log(event);
+      this.spriteIsReady = true;
+      this.spriteW = this.sprite.width;
+      this.spriteH = this.sprite.height;
+
+      const h = this.shape.size[0] * this.spriteH / this.spriteW;
+
+      this.shape = rect(this.shape.position, vector(this.shape.size[0], h));
+    }
+
+
+
 
   }
 
@@ -32,14 +54,25 @@ const spawnPterodactyl = ({ wMin, wMax, hMin, hMax, dMin, dMax, vMin, vMax, yMin
   });
 }
 
+
+/**
+ * @param {CanvasRenderingContext2D} context
+ */
+
 const renderPterodactyl= (context) => (peterodactyl) => {
   context.beginPath();
-  
-  context.rect(
-    -peterodactyl.shape.size[0] / 2, 0, 
-    peterodactyl.shape.size[0], -peterodactyl.shape.size[1]
-  );
 
-  // context.arc(0, 0, cactus.shape.r, 0, Math.PI * 2);
+  if (peterodactyl.spriteIsReady) {
+    context.drawImage(
+      peterodactyl.sprite, 
+      110, 100,
+      peterodactyl.spriteW - 110 - 120,
+      peterodactyl.spriteH - 100 - 100,
+      -peterodactyl.shape.size[0] / 2, 
+      -peterodactyl.shape.size[1], 
+      peterodactyl.shape.size[0], 
+      peterodactyl.shape.size[1]
+  );
+  }
   context.stroke();
 }

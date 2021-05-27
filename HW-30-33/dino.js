@@ -80,11 +80,12 @@ renderDino = (context) => (dino) => {
       dino.sprite, 
       110, 100,
       dino.spriteW - 110 - 120,
-      dino.spriteH - 100 - 100,
+      dino.spriteH - 50 - 100,
       -dino.shape.size[0] / 2, 
       -dino.shape.size[1], 
       dino.shape.size[0], 
       dino.shape.size[1]
+      
   );
   }
 
