@@ -44,22 +44,4 @@ window.addEventListener("load", async () => {
     );  
   })
 
-  // const form = new FormData();
-  // form.append("name", "myname");
-  // console.log(
-  //   await $fetch("test.json", "POST", 
-  //     form
-  //   )
-  // );
-    
-  // console.log(
-  //   await $fetch("test2.json")
-  // );
-  
 })
-
-  
-// console.log(
-//   fetch("https://logbook.itstep.org/")
-//   .then(response => console.log(response))
-//   );
