@@ -108,6 +108,8 @@ const mapError = f => validator =>
   Result.continue
     (state => Result.mapError(f) (validator(state)));
 
+/////
+
 const required =  
   Result.chain
     (value => (value === 0 || (value && (!Array.isArray(value) || value.length > 0))) 
@@ -125,7 +127,19 @@ const length = maxLength => minLength =>
 const minLength = length (Number.MAX_VALUE);
 const maxLength = maxLength => length (maxLength) (0);
 
-
+const date = 
+Result.chain
+  (value => {
+    if (value === "") {
+      return Success.of(value);
+    }
+    // Добавить собственный парсер даты
+    const d = new Date(value);
+    
+    return isNaN(d.getTime()) 
+         ? Failure.of(`Значение должно быть датой`)
+         : Success.of(d,d.toLocaleDateString());
+  });
 
 
 const reMultiWs = /\s{2,}/g;
@@ -135,6 +149,7 @@ const stripWS =
     (value => Success.of(
       value.trim(" ").replace(reMultiWs, " ")
     ));
+
 
 
 // const reMultiWs = /\s{2,}/g;

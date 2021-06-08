@@ -5,7 +5,10 @@ window.addEventListener("load", () => {
 
     const config = {
 
-        "city_from": (stripWS,required,minLength(3)),
+        "city_from": (stripWS,required,minLength(5)),
+        "city_to": (stripWS,required,minLength(5)),
+        "date_from": date,
+        "date_to": date
     }
 
     const showFailure = input => state => {
@@ -42,13 +45,11 @@ window.addEventListener("load", () => {
             (showFailure(target))
             (state => {
               showSuccess(target)
-              target.type !== "file" && (target.value = state.serialized);
+              target.value = state.serialized;
             })
             (validate (config[name]) (value));
         }
       });
-
-
 })
 
 
