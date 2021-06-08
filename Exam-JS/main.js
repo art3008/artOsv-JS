@@ -35,20 +35,9 @@ window.addEventListener("load", () => {
     form.addEventListener("focusout", ev => {
         const { target } = ev; 
         const { name } = target;
-    
-    
+        
         if (name in config) {
-          let { value } = target;
-          switch (target.type) {
-            case "checkbox":  {
-              value = target.checked; 
-            } break;
-            
-            case "file":  {
-              value = Array.from(target.files); 
-            } break;
-          } 
-    
+          let { value } = target;    
           Result.switch
             (showFailure(target))
             (state => {
