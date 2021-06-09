@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../Exam/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="datepicker.material.css">
+    <link href="../Exam-JS/main.css" rel="stylesheet">
 
     <script src="../lib/lists.js"></script>
     <script src="../lib/dom.js"></script>
@@ -14,14 +13,15 @@
     <script src="../Exam-JS/datepicker.js"></script>
     <script src="../Exam-JS/main.js"></script>
 </head>
+
+
 <body>
     <form name="aviasales" novalidate autocomplete="on">      
         <input type="text" name="city_from" data-label="Откуда"/>
         <input type="text" name="city_to" data-label="Куда"/>
-        <input type="text" id="datepicker" name="date_from" data-label="Дата туда"/>
+        <input type="text" name="date_from" data-label="Дата туда"/>
         <input type="text" name="date_to" data-label="Дата обратно"/>
-        <button type="submit">Найти билеты</button>
-    
+        <button id ="btnSrch" type="submit">Найти билеты</button>
     </form>
 </body>
 </html>

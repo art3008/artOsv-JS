@@ -136,7 +136,7 @@ Result.chain
     // Добавить собственный парсер даты
     const d = new Date(value);
     
-    return isNaN(d.getTime()) 
+    return isNaN(d.getDate()) 
          ? Failure.of(`Значение должно быть датой`)
          : Success.of(d,d.toLocaleDateString());
   });
@@ -144,18 +144,11 @@ Result.chain
 
 const reMultiWs = /\s{2,}/g;
 
+const reg = /\/\d{2}(-|\/)\d{2}\1\d{4}/g;
+
 const stripWS =
   Result.chain
     (value => Success.of(
       value.trim(" ").replace(reMultiWs, " ")
     ));
 
-
-
-// const reMultiWs = /\s{2,}/g;
-
-// const stripWS =
-//   Result.chain
-//     (value => Success.of(
-//       value.trim(" ").replace(reMultiWs, " ")
-//     ));

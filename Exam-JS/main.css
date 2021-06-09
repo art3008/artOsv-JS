@@ -1,8 +1,9 @@
-.field {
-    display: block;
-    padding: 20px;
-  }
+.errors {
+  color: red;
+}
 
-  .errors {
-    color: red;
-  }
+.add{
+  width: 100px;
+  background-color: aquamarine;
+}
+  
