@@ -7,3 +7,14 @@
   background-color: aquamarine;
 }
   
+.list{
+  border: 1px solid black;
+  width: 147px;
+  cursor: pointer;
+
+}
+
+.list:hover{
+  background-color: cadetblue;
+  border-color: red;
+}
