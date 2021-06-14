@@ -1,3 +1,12 @@
+*{
+  
+  box-sizing: border-box;
+}
+
+html,body{
+  margin: 0;
+  padding:0;
+}
 .errors {
   color: red;
 }
@@ -9,7 +18,7 @@
   
 .list{
   border: 1px solid black;
-  width: 147px;
+  width: 211px;
   cursor: pointer;
 
 }
@@ -21,4 +30,15 @@
 
 .blk-hidden{
   visibility: hidden;
+}
+
+.lists{
+  display: flex;
+  align-items: stretch;
+
+}
+
+.lists #cities_to{
+  margin-left: 5px;
+  /* visibility: hidden; */
 }

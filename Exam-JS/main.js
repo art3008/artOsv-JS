@@ -81,25 +81,36 @@ window.addEventListener("load", async () => {
   const input_from = document.forms["aviasales"].elements["city_from"];
   const input_to = document.forms["aviasales"].elements["city_to"];
 
-  const renderAirports = _renderAirports(document.getElementById("cities_from"));
+  const renderAirportsFrom = _renderAirportsFrom(document.getElementById("cities_from"));
+  const renderAirportsTo = _renderAirportsTo(document.getElementById("cities_to"));
+  
+  
   const search = _search(db);
-  const handleInput = _handleInput(search, renderAirports);
+  const handleInputFrom = _handleInputFrom(search, renderAirportsFrom);
+  const handleInputTo = _handleInputFrom(search, renderAirportsTo);
+  
   //const air = document.getElementById("cities");
 
-  handleLocation(handleInput, input_from);
-  handleLocation(handleInput,input_to);
+  handleLocation(handleInputFrom, input_from);
+  handleLocation(handleInputTo,input_to);
 
   window.addEventListener("popstate", () =>{
     console.log(window.location.search);
-    handleLocation(handleInput, input_from);
-    handleLocation(handleInput,input_to);
+    handleLocation(handleInputFrom, input_from);
+    handleLocation(handleInputTo,input_to);
 
   });
 
   input_from.addEventListener("input", async e => {
     const query = sanitizeQuery(input_from.value);
     updateHistory(query);
-    await handleInput(query);
+    await handleInputFrom(query);
+  });
+
+  input_to.addEventListener("input", async e => {
+    const query = sanitizeQuery(input_to.value);
+    updateHistory(query);
+    await handleInputTo(query);
   });
 
   console.log(db);
@@ -111,7 +122,7 @@ const _renderAirpo = container => airports => {
     container.firstChild.remove();
   }
 
-  container.append(...airports.map(renderAirports)); 
+  container.append(...airports.map(renderAirportsFrom)); 
 
   console.log(airports.length);
 };
@@ -125,8 +136,8 @@ const updateHistory = query => {
   window.history.pushState(null, "Поиск: " + query, "?query=" + window.encodeURIComponent(query));
 }
 
-const _handleInput = (search, renderAirports) => async query  => {
-  renderAirports(await search(query));
+const _handleInputFrom = (search, renderAirportsFrom) => async query  => {
+  renderAirportsFrom(await search(query));
 }
 
 const _search = db => async query => {
@@ -158,12 +169,22 @@ const _search = db => async query => {
   return await db.findContacts(predicate);
 }
 
-const _renderAirports = container => airports => {
+const _renderAirportsFrom = container => airports => {
   while (container.firstChild) {
     container.firstChild.remove();
   }
 
-  container.append(...airports.map(renderAirports)); 
+  container.append(...airports.map(renderAirportsFrom)); 
+
+  console.log(airports.length);
+};
+
+const _renderAirportsTo = container => airports => {
+  while (container.firstChild) {
+    container.firstChild.remove();
+  }
+
+  container.append(...airports.map(renderAirportsTo)); 
 
   console.log(airports.length);
 };
@@ -171,7 +192,7 @@ const _renderAirports = container => airports => {
 
 
 
-const renderAirports = airport => {
+const renderAirportsFrom = airport => {
   return $("div", {className:"list", onclick: () => {
     const inp = document.getElementById("city_from");
     const air = document.getElementById("cities_from");
@@ -183,12 +204,27 @@ const renderAirports = airport => {
   }}, [airport.name]);
 }
 
-const handleLocation = (handleInput, input) => {
+const renderAirportsTo = airport => {
+  return $("div", {className:"list", onclick: () => {
+    const inpt = document.getElementById("city_to");
+    const air = document.getElementById("cities_to");
+    inpt.value = airport.name;
+    console.log(airport.name);
+    air.classList.add("blk-hidden");
+    //document.body.removeChild(air);
+
+  }}, [airport.name]);
+}
+
+
+
+
+const handleLocation = (handleInputFrom, input) => {
   const query = getHrefQuery()["query"];
 
   if (query) {
     input.value = query;
-    handleInput(query);
+    handleInputFrom(query);
   }
 
 }
