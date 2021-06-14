@@ -78,37 +78,31 @@ window.addEventListener("load", async () => {
 
   await db.seed(mockAirports);
 
-  const input = document.forms["aviasales"].elements["city_from"];
+  const input_from = document.forms["aviasales"].elements["city_from"];
+  const input_to = document.forms["aviasales"].elements["city_to"];
 
-  const renderAirports = _renderAirports(document.getElementById("cities"));
+  const renderAirports = _renderAirports(document.getElementById("cities_from"));
   const search = _search(db);
   const handleInput = _handleInput(search, renderAirports);
-  const air = document.getElementById("cities");
+  //const air = document.getElementById("cities");
 
-  handleLocation(handleInput, input);
+  handleLocation(handleInput, input_from);
+  handleLocation(handleInput,input_to);
 
   window.addEventListener("popstate", () =>{
     console.log(window.location.search);
-    handleLocation(handleInput, input);
+    handleLocation(handleInput, input_from);
+    handleLocation(handleInput,input_to);
+
   });
 
-  input.addEventListener("input", async e => {
-    const query = sanitizeQuery(input.value);
+  input_from.addEventListener("input", async e => {
+    const query = sanitizeQuery(input_from.value);
     updateHistory(query);
     await handleInput(query);
   });
 
   console.log(db);
-
-  // air.addEventListener("click", (event) =>{
-  //   event.preventDefault();
-  //   console.log(input.value);
-  //   //inp.value = air.children.textContent;
-
-  // });
-
-    
-
 
 });
 
@@ -179,9 +173,13 @@ const _renderAirports = container => airports => {
 
 const renderAirports = airport => {
   return $("div", {className:"list", onclick: () => {
-    const inp = document.querySelector("input");
+    const inp = document.getElementById("city_from");
+    const air = document.getElementById("cities_from");
     inp.value = airport.name;
     console.log(airport.name);
+    air.classList.add("blk-hidden");
+    //document.body.removeChild(air);
+
   }}, [airport.name]);
 }
 

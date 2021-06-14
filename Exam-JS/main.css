@@ -18,3 +18,7 @@
   background-color: cadetblue;
   border-color: red;
 }
+
+.blk-hidden{
+  visibility: hidden;
+}
