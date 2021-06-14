@@ -1,76 +1,76 @@
-// window.addEventListener("load", () => {
-//     const  form = document.forms["aviasales"];
+window.addEventListener("load", () => {
+    const  form = document.forms["aviasales"];
 
-//     Array.from(form.elements).map(createField(form));
+    Array.from(form.elements).map(createField(form));
 
-//     const config = {
+    const config = {
 
-//         "city_from": (stripWS,required,minLength(5)),
-//         "city_to": (stripWS,required,minLength(5)),
-//         "date_from": date,
-//         "date_to": date
-//     }
+        "city_from": (stripWS,required,minLength(5)),
+        "city_to": (stripWS,required,minLength(5)),
+        "date_from": date,
+        "date_to": date
+    }
 
-//     const showFailure = input => state => {
-//         console.log(state, [input]);
-//         input.nextSibling.innerHTML = state.error;
-//     }
-//     const showSuccess = input => state => {
-//         console.log(state, [input]);
-//         input.nextSibling.innerHTML = "";
-//     }
+    const showFailure = input => state => {
+        console.log(state, [input]);
+        input.nextSibling.innerHTML = state.error;
+    }
+    const showSuccess = input => state => {
+        console.log(state, [input]);
+        input.nextSibling.innerHTML = "";
+    }
 
-//     form.addEventListener("input", ev => {
-//         const { target } = ev; 
-//         const { name } = target;
+    form.addEventListener("input", ev => {
+        const { target } = ev; 
+        const { name } = target;
     
-//         if (name in config) {
-//           let { value } = target; 
+        if (name in config) {
+          let { value } = target; 
     
-//           Result.switch
-//             (state => (state.level >= Failure.LEVEL_INPUT) && showFailure(target) (state))
-//             (showSuccess(target))
-//             (validate (config[name]) (value));
-//         }
-//     });
+          Result.switch
+            (state => (state.level >= Failure.LEVEL_INPUT) && showFailure(target) (state))
+            (showSuccess(target))
+            (validate (config[name]) (value));
+        }
+    });
 
 
-//     form.addEventListener("focusout", ev => {
-//         const { target } = ev; 
-//         const { name } = target;
+    form.addEventListener("focusout", ev => {
+        const { target } = ev; 
+        const { name } = target;
         
-//         if (name in config) {
-//           let { value } = target;    
-//           Result.switch
-//             (showFailure(target))
-//             (state => {
-//               showSuccess(target)
-//               target.value = state.serialized;
-//             })
-//             (validate (config[name]) (value));
-//         }
-//       });
-// })
+        if (name in config) {
+          let { value } = target;    
+          Result.switch
+            (showFailure(target))
+            (state => {
+              showSuccess(target)
+              target.value = state.serialized;
+            })
+            (validate (config[name]) (value));
+        }
+      });
+})
 
 
-// const createField = form => input => {
+const createField = form => input => {
 
-//     if (input.tagName === "BUTTON") {
-//       return;
-//     }
+    if (input.tagName === "BUTTON") {
+      return;
+    }
   
-//     const field = $("label", {
-//       className: "field"
-//     });
+    const field = $("label", {
+      className: "field"
+    });
     
-//     form.insertBefore(field, input);
+    form.insertBefore(field, input);
     
-//     field.append(
-//       $("div", { className: "label" }, input.dataset.label),
-//       input,
-//       $("div", { className: "errors" })
-//     );
-//   }
+    field.append(
+      $("div", { className: "label" }, input.dataset.label),
+      input,
+      $("div", { className: "errors" })
+    );
+  }
 
 
 window.addEventListener("load", async () => {
@@ -80,6 +80,8 @@ window.addEventListener("load", async () => {
 
   const input_from = document.forms["aviasales"].elements["city_from"];
   const input_to = document.forms["aviasales"].elements["city_to"];
+  const btnSubmit = document.getElementById("btnSrch");
+
 
   const renderAirportsFrom = _renderAirportsFrom(document.getElementById("cities_from"));
   const renderAirportsTo = _renderAirportsTo(document.getElementById("cities_to"));
@@ -97,15 +99,20 @@ window.addEventListener("load", async () => {
   window.addEventListener("popstate", () =>{
     console.log(window.location.search);
     handleLocation(handleInputFrom, input_from);
-    handleLocation(handleInputTo,input_to);
-
+    handleLocation(handleInputTo,input_to); 
   });
 
   input_from.addEventListener("input", async e => {
     const query = sanitizeQuery(input_from.value);
     updateHistory(query);
     await handleInputFrom(query);
+   
   });
+
+  input_from.addEventListener("focus", ()=>{
+    console.log("Фокус");
+
+  }) 
 
   input_to.addEventListener("input", async e => {
     const query = sanitizeQuery(input_to.value);
@@ -114,6 +121,15 @@ window.addEventListener("load", async () => {
   });
 
   console.log(db);
+
+  btnSubmit.addEventListener("click", (e) =>{
+    
+  
+    if(input_from.value === input_to.value){
+      alert("Города одинаковые")
+    }
+
+  })  
 
 });
 
@@ -198,7 +214,7 @@ const renderAirportsFrom = airport => {
     const air = document.getElementById("cities_from");
     inp.value = airport.name;
     console.log(airport.name);
-    air.classList.add("blk-hidden");
+    //air.classList.add("blk-hidden");
     //document.body.removeChild(air);
 
   }}, [airport.name]);
@@ -210,7 +226,7 @@ const renderAirportsTo = airport => {
     const air = document.getElementById("cities_to");
     inpt.value = airport.name;
     console.log(airport.name);
-    air.classList.add("blk-hidden");
+    //air.classList.add("blk-hidden");
     //document.body.removeChild(air);
 
   }}, [airport.name]);

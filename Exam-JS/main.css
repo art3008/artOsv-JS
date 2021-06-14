@@ -17,15 +17,17 @@ html,body{
 }
   
 .list{
+  
   border: 1px solid black;
   width: 211px;
   cursor: pointer;
-
+  /* display: block; */
 }
 
 .list:hover{
   background-color: cadetblue;
   border-color: red;
+  
 }
 
 .blk-hidden{
@@ -35,10 +37,16 @@ html,body{
 .lists{
   display: flex;
   align-items: stretch;
+  margin-left: 97px;
 
 }
 
 .lists #cities_to{
-  margin-left: 5px;
+  margin-left:195px;
   /* visibility: hidden; */
+}
+
+form{
+  display: flex;
+  justify-content: space-around;
 }
