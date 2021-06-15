@@ -73,6 +73,8 @@ const createField = form => input => {
   }
 
 
+
+
 window.addEventListener("load", async () => {
   const db = await DbContext.open();
 
@@ -81,11 +83,12 @@ window.addEventListener("load", async () => {
   const input_from = document.forms["aviasales"].elements["city_from"];
   const input_to = document.forms["aviasales"].elements["city_to"];
   const btnSubmit = document.getElementById("btnSrch");
-
+  const result = document.getElementById("result_order");
 
   const renderAirportsFrom = _renderAirportsFrom(document.getElementById("cities_from"));
   const renderAirportsTo = _renderAirportsTo(document.getElementById("cities_to"));
   
+  //const checkBox = $("input",{type:"checkbox"},)
   
   const search = _search(db);
   const handleInputFrom = _handleInputFrom(search, renderAirportsFrom);
@@ -96,6 +99,8 @@ window.addEventListener("load", async () => {
   handleLocation(handleInputFrom, input_from);
   handleLocation(handleInputTo,input_to);
 
+  //document.body.append(checkBox);
+  
   window.addEventListener("popstate", () =>{
     console.log(window.location.search);
     handleLocation(handleInputFrom, input_from);
@@ -124,12 +129,18 @@ window.addEventListener("load", async () => {
 
   btnSubmit.addEventListener("click", (e) =>{
     
-  
-    if(input_from.value === input_to.value){
-      alert("Города одинаковые")
-    }
+    e.preventDefault();
+    // if(input_from.value === input_to.value){
+    //   alert("Города одинаковые")
+    // }
+
+    
+     
+
 
   })  
+
+
 
 });
 
@@ -214,7 +225,7 @@ const renderAirportsFrom = airport => {
     const air = document.getElementById("cities_from");
     inp.value = airport.name;
     console.log(airport.name);
-    //air.classList.add("blk-hidden");
+    air.classList.add("blk-hidden");
     //document.body.removeChild(air);
 
   }}, [airport.name]);
@@ -226,7 +237,7 @@ const renderAirportsTo = airport => {
     const air = document.getElementById("cities_to");
     inpt.value = airport.name;
     console.log(airport.name);
-    //air.classList.add("blk-hidden");
+    air.classList.add("blk-hidden");
     //document.body.removeChild(air);
 
   }}, [airport.name]);

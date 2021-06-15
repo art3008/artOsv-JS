@@ -37,16 +37,18 @@ html,body{
 .lists{
   display: flex;
   align-items: stretch;
-  margin-left: 97px;
+  margin-left: 42px;
 
 }
 
 .lists #cities_to{
-  margin-left:195px;
+  margin-left:84px;
   /* visibility: hidden; */
 }
 
 form{
   display: flex;
+  /* align-items: center; */
   justify-content: space-around;
+
 }
