@@ -113,7 +113,7 @@ class DbContext {
             return;
           }
   
-          mockAirports(3).forEach(airport => {
+          mockAirports(10).forEach(airport => {
             store.add(airport);
           });
         }

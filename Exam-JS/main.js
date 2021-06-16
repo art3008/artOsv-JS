@@ -82,8 +82,12 @@ window.addEventListener("load", async () => {
 
   const input_from = document.forms["aviasales"].elements["city_from"];
   const input_to = document.forms["aviasales"].elements["city_to"];
+  const date_from = document.forms["aviasales"].elements["date_from"];
+  const date_to = document.forms["aviasales"].elements["date_to"];
+
+  
   const btnSubmit = document.getElementById("btnSrch");
-  const result = document.getElementById("result_order");
+  
 
   const renderAirportsFrom = _renderAirportsFrom(document.getElementById("cities_from"));
   const renderAirportsTo = _renderAirportsTo(document.getElementById("cities_to"));
@@ -112,10 +116,7 @@ window.addEventListener("load", async () => {
    
   });
 
-  input_from.addEventListener("focus", ()=>{
-    console.log("Фокус");
 
-  }) 
 
   input_to.addEventListener("input", async e => {
     const query = sanitizeQuery(input_to.value);
@@ -128,9 +129,25 @@ window.addEventListener("load", async () => {
   btnSubmit.addEventListener("click", (e) =>{
     
     e.preventDefault();
-    if(input_from.value === input_to.value){
-      alert("Города одинаковые")
+    if(input_from.value.length != 0 && input_from.value != 0)
+    {
+      if(input_from.value === input_to.value){
+        alert("Города одинаковые")
+      }
+    }else{
+      alert("Пустые поля городов");
     }
+    
+    if(date_from.value.length != 0 && date_to.value.length != 0){
+      if(!date_from.value.includes('2021') && !date_to.value.includes('2021')){
+        alert("Проверьте даты");
+      }
+    } else {
+      alert("Пустые поля дат");
+
+    }
+
+    
   })  
 
 });
