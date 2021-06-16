@@ -88,7 +88,6 @@ window.addEventListener("load", async () => {
   const renderAirportsFrom = _renderAirportsFrom(document.getElementById("cities_from"));
   const renderAirportsTo = _renderAirportsTo(document.getElementById("cities_to"));
   
-  //const checkBox = $("input",{type:"checkbox"},)
   
   const search = _search(db);
   const handleInputFrom = _handleInputFrom(search, renderAirportsFrom);
@@ -99,7 +98,6 @@ window.addEventListener("load", async () => {
   handleLocation(handleInputFrom, input_from);
   handleLocation(handleInputTo,input_to);
 
-  //document.body.append(checkBox);
   
   window.addEventListener("popstate", () =>{
     console.log(window.location.search);
@@ -130,17 +128,10 @@ window.addEventListener("load", async () => {
   btnSubmit.addEventListener("click", (e) =>{
     
     e.preventDefault();
-    // if(input_from.value === input_to.value){
-    //   alert("Города одинаковые")
-    // }
-
-    
-     
-
-
+    if(input_from.value === input_to.value){
+      alert("Города одинаковые")
+    }
   })  
-
-
 
 });
 
