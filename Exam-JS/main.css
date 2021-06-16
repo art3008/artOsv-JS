@@ -42,30 +42,27 @@ html,body{
 .lists{
   display: flex;
   align-items: stretch;
-  margin-left: 42px;
+  margin-left: 425px;
 
-}
-
-.lists #cities_to{
-  margin-left:84px;
-  /* visibility: hidden; */
 }
 
 form{
   display: flex;
-  justify-content: space-between;
   margin-top: 15%;
-  padding: 80px;
+  flex-direction: row;
+  justify-content:center;
+  align-items:stretch;
 }
 
 button{
-  color:rgb(222, 227, 235);
+  color:white;
   background-color: #ff6f32;
   margin-top: 20px;
 }
 
 input,button {
-  width: 200px;
+  width: 211px;
   height: 55px;
-
+  text-transform: uppercase;
+  font-size: large;
 }
