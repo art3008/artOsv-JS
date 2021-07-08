@@ -1,7 +1,21 @@
 const NAMES = [
     "Karaganda",
     "Astana",
-    "Moscow"
+    "Moscow",
+    "Banqiao",
+    "Chambly",
+    "Khandagayty",
+    "Angers",
+    "NaKae",
+    "Beizhuang",
+    "KorydallГіs",
+    "Huangshi",
+    "Fkih Ben Salah",
+    "Lagoa",
+    "Denton",
+    "Sumberrejo",
+    "Bugcaon",
+    "Hengli"
 ]
 
 
