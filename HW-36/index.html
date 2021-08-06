@@ -4,17 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet">
   <title>Document</title>
+  <script src="../lib/lists.js"></script>
   <script src="../lib/dom.js"></script>
-  <script src="mock.js"></script>
+  <script src="main.js"></script>
 </head>
 <body>
-  <!-- <form name="test" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="12">
-    <input name="name">
-    <input name="date">
-    <input name="file" type="file">
-    <button type="submit">Submit</button>
-  </form>
-</body> -->
+  <div class="input_area">
+    <form class="user__new_comment_input_area" name="new_comment">
+      <div class="user_input__avatar">
+        <div class="user_input__img" id="user_input__img"></div>
+        <div class="user_input__name" id="user_input__name"></div>
+      </div>
+      <div class="user_input__text">
+        <textarea name="comment" id="comment" class="input_textarea"></textarea>
+        <button type="submit" class="submit_button">Отправить</button>
+        <div class="error" id="validation_error"></div>
+      </div>
+    </form>
+  </div>
+  <div class="users_comments" id="users_comments"></div>
+</body>
 </html>

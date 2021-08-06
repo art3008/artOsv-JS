@@ -1,47 +1,92 @@
-const $fetch = async (url, method = "GET", body = null) => {
-  const response = await fetch(url, {
-    method,
-    body: body //? JSON.stringify(body) : null
-  }); 
-
-  if (response.ok) {
-    const result = await response.json();
-    return result;
-  } else {
-    return response.status + " " + response.statusText;
-  }
-}
-
 window.addEventListener("load", async () => {
+  const id = 2;
+  const currentUserNameContainer = document.getElementById("user_input__name");
+  const currentUserAvatarContainer = document.getElementById("user_input__img");
+  let currentUser = null;
+  const validationErrorContainer = document.getElementById("validation_error");
+  validationErrorContainer.style.display = "none";
 
-  const form = document.forms["test"];
+  let isFormValid = false;
 
-  const inputFile = form.elements["file"];
+  const commentsContainer = document.getElementById("users_comments");
+  const request = $fetch("https://60b4b2c14ecdc10017481313.mockapi.io/test");
+  const listOfComments = await request;
 
-  let fileQueue = [];
-
-  inputFile.addEventListener("change", e => {
-    fileQueue = fileQueue.concat(Array.from(inputFile.files));
+  Array.from(listOfComments).forEach(element => {
+    if (parseInt(element.id) === id) {
+      currentUser = element;
+      console.log(currentUser);
+      currentUserNameContainer.append(
+        element.name
+      );
+      currentUserAvatarContainer.append(
+        $("img", { src: element.avatar })
+      );
+    }
   });
 
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-    const data = new FormData(form);
-    data.append("extra", 123);
-    data.delete("file");
+  listOfComments.map(elem => {
+    console.log([elem]);
+  });
 
-    fileQueue.forEach((file, index) => {
-      data.append("file[" + index + "]", file, "file" + index + ".jpg");
-    });
+  commentsContainer.append(...listOfComments.map(loadComment));
 
+  const form = document.forms["new_comment"];
+  const textarea = form.elements["comment"];
 
-    // console.log(fileQueue);
+  textarea.addEventListener("input", () => {
+    if (textarea.value.length === 0) {
+      validationErrorContainer.innerText = "Комментарий не должен быть пустым!";
+      validationErrorContainer.style.display = "block";
+      isFormValid = false;
+    } else if (textarea.value.match(/<\/?.+>/gmi)) {
+      validationErrorContainer.innerText = "Ваш текст содержит недопустимые значения!";
+      validationErrorContainer.style.display = "block";
+      isFormValid = false;
+    } else {
+      validationErrorContainer.style.display = "none";
+      isFormValid = true;
+    }
+  });
 
-    console.log(
-      await $fetch("test.json", "POST", 
-        data
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (isFormValid) {
+      const personNewInput = {
+        "comment": textarea.value,
+        "date": new Date().toLocaleDateString(),
+      }
+      const newComment = await $fetch("https://60b4b2c14ecdc10017481313.mockapi.io/test/" + id, "PUT", personNewInput);
+      const newCommentContainer = loadComment(newComment);
+      newCommentContainer.style.backgroundColor = "rgb(174, 255, 255)";
+
+      commentsContainer.insertBefore(newCommentContainer, Array.from(commentsContainer.children)[0]);
+
+      const timeout = setTimeout(() => {
+        newCommentContainer.style.backgroundColor = "rgb(61, 224, 224)";
+        clearTimeout(timeout);
+      }, 5000);
+    }
+  });
+
+});
+
+const loadComment = (user) => {
+  const date = new Date(user.date);
+  return $("div", { className: "user" },
+    $("div", { className: "user__avatar" },
+      $("div", { className: "avatar__img" },
+        $("img", { src: user.avatar })
+      ),
+      $("div", { className: "avatar__name" },
+        user.name
+      ),
+      $("div", { className: "date_of_publication" },
+        date.toLocaleDateString()
       )
-    );  
-  })
-
-})
+    ),
+    $("div", { className: "user__text" },
+      $("span", {}, user.comment)
+    )
+  );
+}
